@@ -99,6 +99,7 @@ import matplotlib.pyplot as plt
 
 ```python
 # __SOLUTION__ 
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 %matplotlib inline
@@ -119,11 +120,32 @@ word_counts = {}
 for word in words:
     # Update word counts
     word_counts[word] = word_counts.get(word, 0) + 1 #Get previous entry, update by 1
+    
+# With Pandas
+counts = pd.DataFrame.from_dict(word_counts, orient='index')
+counts = counts.sort_values(by=counts.columns[0], ascending=False)
+counts.head(25).plot(kind='barh')
+plt.title('Top 25 Words from Macbeth')
+plt.ylabel('Word')
+plt.xlabel('Number of Occurences')
+# Include descriptive titles and labels
 ```
+
+
+
+
+    Text(0.5, 0, 'Number of Occurences')
+
+
+
+
+![png](index_files/index_6_1.png)
+
 
 
 ```python
 # __SOLUTION__ 
+# With Lists
 # Convert to a list
 counts = list(word_counts.items())
 # Sort words by count
